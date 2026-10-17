@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-label="Concept illustration of an Arduino jukebox with LCD screen and speaker">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07192d"/><stop offset="1" stop-color="#153c60"/></linearGradient><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#608ab1" stroke-opacity=".11"/></pattern><filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#000918" flood-opacity=".65"/></filter></defs>
+<rect width="900" height="600" fill="url(#bg)"/><rect width="900" height="600" fill="url(#grid)"/>
+<text x="60" y="71" fill="#e9c573" font-size="21" font-weight="bold" font-family="monospace" letter-spacing="3">ARDUINO / IPODUINO 2.0</text>
+<g filter="url(#shadow)"><rect x="132" y="138" width="628" height="351" rx="28" fill="#132b45" stroke="#628ab0" stroke-width="4"/><rect x="163" y="170" width="574" height="287" rx="14" fill="#112235" stroke="#2e5775" stroke-width="3"/>
+<rect x="222" y="194" width="383" height="119" rx="11" fill="#a8d3e9" stroke="#ecbf69" stroke-width="9"/><rect x="242" y="213" width="343" height="81" rx="5" fill="#184c67"/><text x="261" y="250" fill="#bceaff" font-family="monospace" font-size="29" font-weight="bold">NOW PLAYING</text><text x="261" y="280" fill="#f1c675" font-family="monospace" font-size="20">TRACK 04  ♪ ♪</text>
+<circle cx="262" cy="388" r="44" fill="#203d53" stroke="#7cc6ee" stroke-width="6"/><circle cx="262" cy="388" r="25" fill="#294f71"/><circle cx="262" cy="388" r="10" fill="#edc46f"/>
+<circle cx="387" cy="386" r="20" fill="#edc46f" stroke="#7d591e" stroke-width="5"/>
+<g fill="#7bd3fa"><circle cx="474" cy="387" r="11"/><circle cx="515" cy="387" r="11"/></g><circle cx="557" cy="387" r="11" fill="#edc46f"/>
+<path d="M663 228v120m-36-87l36-33 33 33m-66 64c14-20 24-20 40-13s25 11 41-11" fill="none" stroke="#edc46f" stroke-width="7" stroke-linecap="round"/>
+<g fill="#9ab6c9"><rect x="174" y="445" width="553" height="7" rx="3"/></g></g>
+<rect x="60" y="540" width="780" height="1" fill="#8bb8da" opacity=".22"/><text x="60" y="567" fill="#8fb6d5" font-size="16" font-family="monospace" letter-spacing="1">CONCEPT ILLUSTRATION  ·  REPLACE WITH YOUR BUILD PHOTO</text>
+</svg>

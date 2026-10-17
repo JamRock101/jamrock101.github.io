@@ -1,10 +1,7 @@
-Place project images here. Suggested names:
-  socket-face-tracker.jpg
-  tiva-bop-it.jpg
-  de10-pong.jpg
-  sram-4x2.jpg
-  gator-quant-hacks.jpg
-  pocket-guitar-hero.jpg
-Then set the matching project's image field in data.js to e.g.
-  image: "assets/projects/socket-face-tracker.jpg"
-WebP and PNG work too. 1200 x 800 px or 1600 x 1000 px is recommended.
+Each project now has editable images: [] and github: "" / demo: "" fields inside data.js.
+Place your real project photographs here, e.g. sram-layout.jpg, pong-gameplay.png, dice-breadboard.jpg.
+Set images: ["assets/projects/your-photo.jpg", "assets/projects/other-photo.jpg"] for 2 photos.
+One image only? Use images: ["assets/projects/your-photo.jpg"]. Empty slots show a designed placeholder.
+
+The three *-concept.svg files are original illustrative graphics for Binary Digital Dice, iPoduino and AutoMower.
+They are not photographs of your original hardware; replace them with real project photos at any time.
