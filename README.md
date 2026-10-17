@@ -1,112 +1,195 @@
-# Giorgio Rusconi — Portfolio Website
+# Giorgio Rusconi — Personal Portfolio Website (Version 2)
 
-A polished, responsive, one-page portfolio built from the **European CV** and the **45-page long-form portfolio** supplied in October 2026.
+A **seven-page**, completely static website in deep navy, light blue, and gold. No framework, no dependency install, no database, and no subscription. All links are relative, so the same folder works on GitHub Pages at a username URL or repository subdirectory.
 
-**Stack:** HTML + CSS + vanilla JavaScript. No React, database, API keys, paid service, or build process. Open `index.html` locally or host all files on GitHub Pages, Cloudflare Pages, Netlify, etc.
+## 1. Where to edit the site (the important part)
 
-## What's included
+| What you want to change | File to edit | Exact place |
+|---|---|---|
+| Short biography and contact text | `index.html` | Hero (`id="about"`) and bottom contact area (`id="contact"`) |
+| Your email address | `index.html` | Search for `grusconi@ufl.edu`, replace both occurrences; it is intentionally **plain text**, never a `mailto:` link |
+| Your personal photographs | `data.js` | `aboutPhotos` at the top. Put actual images in `assets/about/` |
+| Education and graduate-school message | `education.html` | Cards in the `education-grid`; graduate-school card has `COMING SOON` |
+| Skills, certifications, awards and languages | `data.js` | `skills`, `certifications`, `awards`, `languages` |
+| Internships and employment | `data.js` | `experience` |
+| Research roles and details | `data.js` | `research` |
+| Leadership, clubs, sports and earlier service | `data.js` | `leadership`, `university`, `sports`, `service` |
+| **Project descriptions, dates, order, photos and GitHub links** | **`data.js`** | **`projects` array**; the newest is determined by `sortKey` |
+| **Bucket-list goals and completion checkmarks** | **`data.js`** | **`bucket` array**; change `completed: false` to `completed: true` |
+| Navy / blue / gold colors and layout | `styles.css` | The **first two color sections** (`:root` and `:root[data-theme="light"]`) |
+| Project timeline HTML layout, image placeholders and link buttons | `script.js` | `if (byId('projectTimeline'))` |
+| Bucket row appearance/HTML | `script.js` | `if (byId('bucketList'))` |
+| Main navigation links | Seven HTML pages | Each file has a `<nav id="mainNav">` with seven page links |
+| Hosting instructions and editable files overview | `README.md` | This guide |
 
-- **00 About Me:** introduction, engineering humor, water sports, and contact links
-- **01 Education:** UF bachelor's, *graduate school — Coming Soon*, high school, technical skills, certifications, academic distinctions, languages
-- **02 Professional experience:** UF peer instruction and teaching; Ford; NextEra (2024, 2025); ScubaCaribe
-- **03 Research:** WISE Lab, Florida Institute for National Security, Makerspace Peer Mentor Handbook, Machine Intelligence Lab
-- **04 Life, leadership, involvement:** technical leadership, university mentorship, competitive swimming/sailing/scuba, high-school service
-- **05 Projects:** six large cards with editable image and link spaces, in-depth project dialogs, project filters, and eight other builds
-- **06 Bucket List:** clearly marked *editable ideas*, not sourced personal commitments
-- Contact section and footer
+In general: **edit content in `data.js`, page-specific sections in their `.html` file, appearance in `styles.css`, and behavior in `script.js`.**
 
-## 1. Preview the website
+## 2. The seven pages
 
-Double-click `index.html` in your file explorer. The entire portfolio works locally, including the project filters, detailed project dialogs, responsive menu, and light/dark toggle.
+```text
+index.html           00  About Me + contact + personal photo spaces
+education.html       01  Education + Graduate Coming Soon + skills / languages / awards
+experience.html      02  Professional Experience
+research.html        03  Research Experience
+involvement.html     04  Life, Leadership, Sports, Hobbies & Earlier Service
+projects.html        05  14 projects, newest first, full description + image + GitHub slots
+bucket-list.html     06  40 vertical bucket-list rows, each with a checkmark status
+```
 
-If you want to test it as a local server:
+To change the *content* of education cards, for example, edit `education.html`. But to update an internship, edit `data.js` because that page's entries are generated automatically.
+
+## 3. Add actual pictures of yourself
+
+Put your photos in:
+
+```text
+assets/about/portrait.jpg
+assets/about/swimming.jpg
+assets/about/sailing.jpg
+```
+
+Then change `aboutPhotos` near the top of **`data.js`**:
+
+```js
+aboutPhotos: [
+  { label: "YOUR PORTRAIT", hint: "assets/about/portrait.jpg", image: "assets/about/portrait.jpg" },
+  { label: "ON THE WATER", hint: "assets/about/swimming.jpg", image: "assets/about/swimming.jpg" },
+  { label: "OUTSIDE THE LAB", hint: "assets/about/sailing.jpg", image: "assets/about/sailing.jpg" }
+],
+```
+
+The first image is large, the second and third are smaller. A blank `image: ""` displays a clearly labeled placeholder, not a broken photo. Use your own permitted images; don't assume these filenames exist until you add them.
+
+## 4. Add project pictures, GitHub and demo links
+
+All projects, including **Binary Digital Dice**, **iPoduino 2.0**, and **AutoMower**, are now fully featured chronology entries with photos/graphics beside the full write-up.
+
+1. Put photos in `assets/projects/` (for example `dice-breadboard.jpg`, `dice-circuit.jpg`).
+2. Open `data.js` and find the project by `id` or title.
+3. Change that project's `images`, `github`, and (optional) `demo` fields:
+
+```js
+{
+  id: "digital-dice",
+  title: "Binary Digital Dice",
+  year: "Fall 2024",
+  sortKey: "2024-10-10",
+  // ... leave the original overview, bullets and tags in place ...
+  images: [
+    "assets/projects/dice-breadboard.jpg",
+    "assets/projects/dice-circuit.jpg"
+  ],
+  github: "https://github.com/JamRock101/your-repository-name",
+  demo: "https://example.com/your-demo",
+  illustration: false
+}
+```
+
+The snippet shows the *fields to change*, not a complete replacement for the project's object. No actual repository URL or demo has been fabricated: while the values are empty, the website intentionally shows `GitHub link slot` and `Demo / gallery slot` as **non-clickable placeholders**. If you don't want a demo, leave it empty.
+
+**Promoted projects with included concept art:**
+
+- `assets/projects/binary-digital-dice-concept.svg`
+- `assets/projects/ipoduino-concept.svg`
+- `assets/projects/automower-concept.svg`
+
+These three SVGs are **clearly labeled conceptual illustrations**, not pictures of your actual original builds. Replace `images[0]` with a real photo and set `illustration: false` when you have it. Other featured projects currently have photo slots so you can add the exact screenshots/photos you want.
+
+### Chronology and text
+
+The `projects` array in `data.js` is sorted automatically **newest to oldest** using each project's `sortKey`. For example, `sortKey: "2026-09-20"` places an entry above `"2026-03-20"`; `year` is the human-friendly date shown on the website. Adjust both when you add an entry. To add a project, copy an existing project object and supply a **unique** `id`, title, dates, `overview`, `bullets`, `tags`, `images`, `github` and `demo`.
+
+Projects with `featured: true` show two image panels. Other projects show one; change `featured` to promote them visually. The **Pocket Guitar Hero** entry remains `status: "coming-soon"`; change this field and its text when the build is finished.
+
+## 5. Turn the bucket list into YOUR actual list
+
+The website includes **40 vertical rows**, consisting of six suggested goals and 34 clearly labeled blank slots. They are **examples to customize**, not statements that all 40 are your personal goals. Every entry supports a title, description, category and publicly visible completion checkbox.
+
+Find the `bucket` array near the bottom of **`data.js`**:
+
+```js
+bucket: [
+  {
+    title: "Sail around a new island",
+    caption: "Where I want to go and why.",
+    kind: "Travel",
+    completed: false
+  },
+  {
+    title: "Run my first marathon",
+    caption: "One goal off the list.",
+    kind: "Sports",
+    completed: true
+  }
+]
+```
+
+**Only change `completed` to `true` for something you have actually completed.** The website automatically renders the checked box and updates the overall count. These are **read-only public progress indicators**: visitors cannot alter the status for everyone by clicking. Add as many entries as you want (50, 100, 200...). For blank slots, delete or change `placeholder: true` when you replace one with a real goal.
+
+## 6. Change the blue-and-gold colors
+
+At the top of `styles.css`:
+
+```css
+:root {
+  --bg: #071426;       /* dark navy backdrop */
+  --panel: #0e233c;    /* card navy */
+  --accent: #83ccff;   /* light blue */
+  --accent-2: #edc46f; /* gold */
+}
+```
+
+For the light mode, use the next block called `:root[data-theme="light"]`. The button in the navigation toggles themes and remembers the visitor's preference while switching pages.
+
+## 7. Preview locally
+
+You can usually open `index.html` directly in a web browser. For the most reliable preview, open a terminal in this folder and run:
 
 ```bash
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000`.
+Then visit `http://localhost:8000/`. All seven pages are linked from the top navigation.
 
-## 2. Customize your photos, descriptions and links
+## 8. Host for free with GitHub Pages
 
-### Featured project image slots
+1. Sign into the GitHub account `JamRock101` and create a **public** repository called `jamrock101.github.io` if that name isn't already in use.
+2. Extract the ZIP; upload **the contents** of the `giorgio-portfolio/` folder, not the ZIP and not an extra containing folder. The root of your repository must contain `index.html` and all six other HTML pages.
+3. Commit the files to `main`.
+4. Under **Settings → Pages**, choose **Deploy from a branch**, `main`, `/(root)`, and Save.
+5. After publishing, the expected website address is `https://jamrock101.github.io/`.
 
-The six cards already show deliberately **empty image placeholders**. Images and links aren't invented. Add your photos here:
+For a project repository instead of the username repository, a URL like `https://jamrock101.github.io/portfolio/` works with these relative asset paths. The site is static, so no paid service or server is needed.
 
-| Project | Suggested image filename |
-|---|---|
-| Socket Face-Tracker | `assets/projects/socket-face-tracker.jpg` |
-| Tiva TM4C123GH6PM Bop-It | `assets/projects/tiva-bop-it.jpg` |
-| Two-Player Pong — DE10 FPGA | `assets/projects/de10-pong.jpg` |
-| 4×2 SRAM Design — EEE 4310 | `assets/projects/sram-4x2.jpg` |
-| Gator Quant Hacks — FPGA Track | `assets/projects/gator-quant-hacks.jpg` |
-| Pocket Guitar Hero (**Coming Soon**) | `assets/projects/pocket-guitar-hero.jpg` |
+GitHub documentation: https://docs.github.com/en/pages/quickstart
 
-Open **`data.js`**, find the item by its `id` and change:
-
-```js
-image: "assets/projects/socket-face-tracker.jpg",
-github: "https://github.com/JamRock101/your-repository",
-demo: "https://example.com/your-video-or-gallery",
-```
-
-Leave the fields as `""` if not ready. The website will show clear photo/link slots, *not* a broken picture or fake button. Suggested image size: 1200×800 px or 1600×1000 px; `.jpg`, `.png` and `.webp` all work.
-
-### Other content
-
-- Change job descriptions, research, skills, clubs and awards in `data.js`.
-- Change the hero/about-me text, graduate-school card, and contact information in `index.html`.
-- Add a portrait/photo to the hero manually if desired (the circuit-themed illustration is intentionally text/CSS-based).
-- Replace the six **bucket-list ideas** in `data.js` with your **actual** goals.
-- Change colors and typography in `styles.css` under `:root`.
-- Pocket Guitar Hero intentionally says **Coming Soon**. Update its `status`, overview and details when completed.
-- Graduate school intentionally has **no institution listed** until decided/confirmed.
-
-### Privacy before publishing
-
-The public website includes your university email, LinkedIn and GitHub, but **does not publish the phone number** found in your CV. That is intentional to reduce unwanted phone spam. Only add your phone number if you want it on the public internet. The original PDFs are **not included** among the website's publicly hosted files.
-
-Check that any research, internship and employer details are safe to publish; the current descriptions were drawn from the documents you supplied.
-
-## 3. Host for free: GitHub Pages (recommended)
-
-Your GitHub handle in the supplied CV is **JamRock101**.
-
-1. Go to https://github.com/new while signed in as `JamRock101`.
-2. Name the repository **`jamrock101.github.io`** (your user site). Make it **Public** if using GitHub Free.
-3. Upload **all of the contents** of this folder to the *root* of the repository: `index.html`, `data.js`, `script.js`, `styles.css`, `assets/`, `.nojekyll`, etc. Do not upload the ZIP alone.
-4. Commit the files to the **`main`** branch.
-5. Go to **Settings → Pages → Build and deployment → Deploy from a branch**, select **`main`** and **`/(root)`**, then Save.
-6. After publishing, the expected address will be **https://jamrock101.github.io/** (not live until you've created and deployed it).
-7. To update the site, commit changes to the same repository. GitHub republishes the static site.
-
-If you already have a user site, give this repository another name such as `portfolio`. It will be available at **`https://jamrock101.github.io/portfolio/`** instead. All assets in this website use relative paths, so both patterns work.
-
-Official instructions: https://docs.github.com/en/pages/quickstart and https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
-
-### Alternative: Cloudflare Pages (free plan)
-
-You can also use Cloudflare Pages to deploy this folder as a static site. Either connect a GitHub repository or use a Direct Upload from the Cloudflare dashboard. Static HTML/CSS/JS doesn't need a build command. See https://developers.cloudflare.com/pages/get-started/.
-
-## File layout
+## Complete folder layout
 
 ```text
 giorgio-portfolio/
-├── index.html             # Page markup + introductory copy
-├── styles.css             # Responsive layout, graphics, colors, themes
-├── data.js                # Editable content, project images/links/bucket list
-├── script.js              # Project filters/modals + mobile navigation + theme
-├── .nojekyll              # Prevent unwanted Jekyll transformation on Pages
-├── README.md              # You are here
+├── index.html
+├── education.html
+├── experience.html
+├── research.html
+├── involvement.html
+├── projects.html
+├── bucket-list.html
+├── data.js                     # EVERY project + bucket-list item + photo path
+├── script.js                   # Rendering, navigation, color toggle
+├── styles.css                  # Main theme + responsive design
+├── README.md                   # This editing / hosting guide
+├── .nojekyll
 └── assets/
     ├── favicon.svg
+    ├── about/
+    │   └── README.txt          # Put your portrait/personal photos here
     └── projects/
-        └── README.txt     # Suggested image names
+        ├── README.txt
+        ├── binary-digital-dice-concept.svg
+        ├── ipoduino-concept.svg
+        └── automower-concept.svg
 ```
 
-## What the source documents support
+### Privacy and source notes
 
-- Details originate from `Public_EuropeanCV_format.pdf` and `Portfolio (1).pdf` (both supplied with the request).
-- Descriptions were edited for readability on the web and condensed from longer project write-ups; dates and roles reflect the CV where sources differed.
-- The **graduate degree** and **Pocket Guitar Hero** were explicitly marked *Coming Soon* at your request, regardless of forward-looking language in the original CV.
-- Bucket-list ideas and playful one-liners are editorial suggestions, not asserted facts from the source PDFs.
+The public pages display the university email as plain text, GitHub and LinkedIn. No telephone number is shown. Research and work copy is based on the provided CV and long-form portfolio. Photos of you and actual completed hardware were not provided as standalone assets, so no real-world photographs were invented. Neither source PDF is included in the public website folder; keep private or confidential materials out of GitHub.

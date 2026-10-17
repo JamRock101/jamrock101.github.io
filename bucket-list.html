@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="A spacious vertical personal bucket list with completed and yet-to-do status for each goal.">
+  <meta property="og:title" content="Bucket List | Giorgio Rusconi">
+  <meta property="og:description" content="A spacious vertical personal bucket list with completed and yet-to-do status for each goal.">
+  <meta property="og:type" content="website">
+  <title>Bucket List | Giorgio Rusconi</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="bucket-list">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <header class="site-header" id="top"><div class="header-inner shell">
+    <a href="index.html" class="brand" aria-label="Giorgio Rusconi, home"><span class="brand-symbol">GR<span class="brand-period">.</span></span><span class="brand-caption">hardware / human</span></a>
+    <nav id="mainNav" class="main-nav" aria-label="Main navigation"><a href="index.html" >About</a><a href="education.html" >Education</a><a href="experience.html" >Work</a><a href="research.html" >Research</a><a href="involvement.html" >Life + Leadership</a><a href="projects.html" >Projects</a><a href="bucket-list.html" class="active" aria-current="page">Bucket List</a></nav>
+    <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light mode" title="Toggle color theme"><span id="themeIcon">☀</span></button><a href="index.html#contact" class="contact-mini">Contact ↗</a><button id="menuToggle" class="icon-button menu-toggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+  </div></header>
+  <main id="main"><section class="section shell section-gap bucket-page" id="bucket">
+  <div class="section-head"><div><p class="section-kicker">06 / ALWAYS MORE TO DO</p><h1 class="page-title">The very long <span class="h2-accent">bucket list.</span></h1></div><p class="section-intro">A place for the big dreams, the small dares, and all the adventures in between. Room for as many as I can think of.</p></div>
+  <div class="bucket-page-grid">
+    <aside class="bucket-sidebar"><span class="asterisk">✳</span><h2>Collect moments, not just milestones.</h2><p>Personal adventures and ambitions. The checkmark means I've accomplished it; an empty square means it's still ahead.</p><div class="bucket-progress"><strong id="bucketProgressLabel">00 / 00</strong><span>completed goals</span><div class="bucket-progress-track"><span id="bucketProgressFill"></span></div></div><div class="bucket-legend"><span><b class="sample-checkbox sample-done">✓</b> Completed</span><span><b class="sample-checkbox"></b> Still to do</span></div></aside>
+    <div><div class="bucket-list-header"><span>MASTER LIST / EDITABLE</span><span id="bucketTotal"></span></div><div id="bucketList" class="bucket-list"></div><p class="bucket-disclaimer">The entries are starting ideas and open slots; they are not a claim that these are my final personal goals. Edit <code>bucket</code> in <code>data.js</code> to set the real goals and <code>completed: true</code> when accomplished.</p></div>
+  </div>
+</section></main>
+  <footer class="site-footer"><div class="shell footer-inner"><a href="index.html" class="brand"><span class="brand-symbol">GR<span class="brand-period">.</span></span></a><span>Designed with a few electrons and probably too much coffee. © <span id="copyrightYear">2026</span> Giorgio Rusconi</span><a href="#top">Back to top ↑</a></div></footer>
+</body></html>
